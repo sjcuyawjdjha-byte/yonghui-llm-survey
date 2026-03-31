@@ -49,20 +49,63 @@
 }
 \captionsetup{font=small, labelfont=bf}
 \graphicspath{{figure/}}
+
+% --- 图表编号带章节号 ---
+\numberwithin{table}{section}
+\numberwithin{figure}{section}
+\renewcommand{\thetable}{\thesection-\arabic{table}}
+\renewcommand{\thefigure}{\thesection-\arabic{figure}}
+
+% --- 章节标题格式 ---
+\ctexset{
+  section = {
+    format = \heiti\zihao{-3}\centering,
+    beforeskip = 1.5ex plus 0.5ex,
+    afterskip = 1ex plus 0.3ex,
+    name = {,},
+    number = \chinese{section},
+    aftername = \quad
+  },
+  subsection = {
+    format = \heiti\zihao{4}\raggedright,
+    beforeskip = 1ex plus 0.3ex,
+    afterskip = 0.8ex plus 0.2ex,
+    name = {（,）},
+    number = \chinese{subsection},
+    aftername = \quad
+  }
+}
+
 % --- 页眉页脚设置 ---
 \pagestyle{fancy}
 \fancyhf{} % 清除所有默认设置
-\renewcommand{\headrulewidth}{0.5pt} % 设置页眉横线粗细
+\renewcommand{\headrulewidth}{0.5pt}
 
 % 居中页眉：作者等：稿件题目
-\fancyhead[C]{杨林涛：从“走苏联的路”到“走自己的路”} 
-% 右侧页眉：页码（这里演示单页码）
-\fancyhead[R]{\thepage}
+\fancyhead[C]{\zihao{5} 杨林涛：从”走苏联的路”到”走自己的路”}
+% 页脚居中页码
+\fancyfoot[C]{\zihao{-5} —~\thepage~—}
 % 设置全局1.5倍行距
 \linespread{1.5}
 
+% --- 定义前页样式（目录等用罗马数字） ---
+\fancypagestyle{frontmatter}{
+  \fancyhf{}
+  \renewcommand{\headrulewidth}{0.5pt}
+  \fancyhead[C]{\zihao{5} 杨林涛：从”走苏联的路”到”走自己的路”}
+  \fancyfoot[C]{\zihao{-5} —~\thepage~—}
+}
+
+% --- 定义摘要框样式 ---
+\newtcolorbox{abstractbox}[1][]{
+  colback=gray!4, colframe=gray!40,
+  arc=1.5mm, boxrule=0.4pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  breakable, #1
+}
+
 \begin{document}
-\thispagestyle{fancy} % 强制要求首页也显示页眉
+\thispagestyle{empty} % 封面页不显示页码
 
 \begin{center}
     \vspace*{1em}
@@ -92,20 +135,48 @@
 \vspace{2em}
 {\color{red!40!black}\hrule height 0.8pt}
 \vspace{2em}
-\begin{quote}
+\begin{abstractbox}
     {\kaishu \zihao{-4}
-    \textbf{摘要：} 本文整理中国建设社会主义的过程，最初学习苏联，后来建立中国特色社会主义。文章分析这个过程的原因，国家刚建立时，西方国家封锁中国，经济非常落后，中国借鉴苏联的方法，借此建立工业基础。后来，苏联方法出现问题，重工业发展不平衡，权力过于集中。毛泽东等领导人发表《论十大关系》，中共召开第八次全国代表大会，中国开始自己探索建设道路。中国在二十世纪六七十年代遇到很大困难，但是，当时的经验和思考帮助了后来的改革。中共十一届三中全会召开，中国放弃单一的计划经济，建立社会主义市场经济，成功找到中国特色社会主义道路。文章指出，中国一直坚持自己做决定，这是这条道路的主要特点，也是新时代推进中国式现代化的重要动力和基本原则。
+    \centerline{\heiti\textbf{【摘\quad 要】}}
+    \vspace{0.3em}
+    本文整理中国建设社会主义的过程，最初学习苏联，后来建立中国特色社会主义。文章分析这个过程的原因，国家刚建立时，西方国家封锁中国，经济非常落后，中国借鉴苏联的方法，借此建立工业基础。后来，苏联方法出现问题，重工业发展不平衡，权力过于集中。毛泽东等领导人发表《论十大关系》，中共召开第八次全国代表大会，中国开始自己探索建设道路。中国在二十世纪六七十年代遇到很大困难，但是，当时的经验和思考帮助了后来的改革。中共十一届三中全会召开，中国放弃单一的计划经济，建立社会主义市场经济，成功找到中国特色社会主义道路。文章指出，中国一直坚持自己做决定，这是这条道路的主要特点，也是新时代推进中国式现代化的重要动力和基本原则。
     \vspace{0.5em}
     \newline
-    \textbf{关键词：} 社会主义建设；苏联模式；自主探索；改革开放；中国特色社会主义
+    \textbf{【关键词】} 社会主义建设；苏联模式；自主探索；改革开放；中国特色社会主义
     }
-\end{quote}
+\end{abstractbox}
+
+\vspace{1.5em}
+
+\begin{abstractbox}
+    {\zihao{-4}
+    \centerline{\textbf{From ``Following the Soviet Path'' to ``Forging Our Own Path''}}
+    \vspace{0.2em}
+    \centerline{\zihao{5}\textit{--- Exploring the History of China's Autonomous Quest for a Socialist Construction Road}}
+    \vspace{0.5em}
+    \centerline{\textbf{[Abstract]}}
+    \vspace{0.3em}
+    {\zihao{5} This paper examines China's transition from emulating the Soviet Union to establishing socialism with Chinese characteristics. In its early years, the newly founded People's Republic faced Western blockades and severe economic backwardness, compelling the adoption of the Soviet model to build an industrial foundation. However, the inherent deficiencies of this model---imbalanced emphasis on heavy industry and excessive centralization of power---soon became apparent. Mao Zedong's \textit{On the Ten Major Relationships} and the Eighth National Congress of the CPC marked the beginning of China's independent exploration. Despite significant setbacks during the 1960s and 1970s, the experiences and reflections of that period laid the groundwork for subsequent reforms. The Third Plenary Session of the Eleventh Central Committee initiated reform and opening-up, leading China to abandon rigid central planning in favor of a socialist market economy. This paper argues that the spirit of autonomous decision-making constitutes the defining feature of China's development path and serves as a fundamental driving force for advancing Chinese-style modernization in the new era.}
+    \vspace{0.5em}
+    \newline
+    \textbf{[Keywords]} Socialist Construction; Soviet Model; Autonomous Exploration; Reform and Opening-up; Socialism with Chinese Characteristics
+    }
+\end{abstractbox}
 \vspace{1em}
 \newpage
+\pagenumbering{roman}  % 目录页使用罗马数字
+\pagestyle{frontmatter}
 \tableofcontents
-\newpage 
 
-% 正文设置为宋体小四
+\newpage
+\listoffigures
+\vspace{2em}
+\listoftables
+\newpage
+
+% --- 正文开始 ---
+\pagenumbering{arabic}  % 正文使用阿拉伯数字页码
+\pagestyle{fancy}
 \songti \zihao{-4}
 
 \section{绪论}
@@ -113,7 +184,7 @@
 马克思等早期学者没有说明如何在经济落后的东方大国建设社会主义，一九四九年新中国成立，帝国主义国家封锁中国，国内经济非常破败。中国共产党为了保护新的政权和发展国家工业，决定学习苏联，这就是“走苏联的路”\upcite{ref1}。后来苏联方法的问题逐渐暴露，管理制度死板导致经济发展不平衡，中国共产党人认识到不能完全照抄外国做法，其不能解决中国复杂的实际问题。所以，文章研究中国从学习苏联到自己寻找道路的过程，这个研究帮助我们理解马克思主义如何结合中国实际，也帮助我们在新时代坚持发展中国式现代化。
 
 \subsection{核心概念界定}
-文章研究“苏联模式”和“自己做主”。“苏联模式”特别指斯大林时期的做法，国家通过死板的命令管理经济，优先建设重工业，政治上权力过度集中在少数人手中\upcite{ref2}。“自己做主”指中国共产党坚持马克思主义，根据中国人口多、农业基础薄弱的真实情况做事，自己思考和决定，在实际工作中改变传统的做法，这是马克思主义结合中国实际的核心内容。
+文章研究“苏联模式”和“自己做主”。“苏联模式”\footnote{“苏联模式”又称”斯大林模式”，学界对其内涵存在广义与狭义之分。狭义仅指斯大林时期形成的高度集中的政治经济体制；广义则涵盖苏联社会主义建设的整套理论、制度与实践模式。本文取其狭义。}特别指斯大林时期的做法，国家通过死板的命令管理经济，优先建设重工业，政治上权力过度集中在少数人手中\upcite{ref2}。“自己做主”指中国共产党坚持马克思主义，根据中国人口多、农业基础薄弱的真实情况做事，自己思考和决定，在实际工作中改变传统的做法，这是马克思主义结合中国实际的核心内容。
 
 \subsection{研究思路与方法}
 文章使用马克思主义的唯物主义方法研究问题，把中国建设社会主义的过程放在具体的历史时间里分析。详细分析中国早期学习苏联的过程，在困难中前进的过程，以及在新时期成功改变做法的过程。文章研究《论十大关系》、中共八大、十一届三中全会和邓小平南方讲话等重要事件，通过这些事件，说明中国共产党人如何自己决定国家发展方向。
@@ -169,7 +240,7 @@
 \subsection{“一边倒”战略与苏联模式的引入}
 新中国刚建立时，国内和国外的情况非常危险，在国外，美国带领西方资本主义国家孤立新中国，他们不和中国做生意，用军队包围中国。在国内，中国经历了很多年的战争，国家的经济非常落后，几乎没有现代工业。世界当时分为两个对立的阵营，毛泽东为了保护国家安全，也为了快速建设工业，决定全面依靠社会主义国家，全面学习苏联的建设经验，这是当时唯一的选择\upcite{ref3}。
 
-在这种情况里，中国制定并执行了第一个五年计划，这个计划的时间是一九五三年到一九五七年，主要内容是建设一百五十六个大型工程，苏联帮助中国建设这些工程。中国决定优先建设重工业，逐步建立由国家完全控制的经济管理方式，这种做法在很短的时间里集中了全国的力量。中国用极短的时间建立了很多现代工业工厂，中国开始制造飞机，中国开始制造汽车，中国开始制造大型机器，中国由此建立了国家工业的基础\upcite{ref4}。
+在这种情况里，中国制定并执行了第一个五年计划，这个计划的时间是一九五三年到一九五七年，主要内容是建设一百五十六个大型工程\footnote{"156项工程"是中苏两国政府于1950年代商定的援华建设项目，涵盖钢铁、煤炭、电力、机械、化工、军工等领域。因中途调整，实际施工建设的项目为150项，但学界沿用"156项工程"这一通称。}，苏联帮助中国建设这些工程。中国决定优先建设重工业，逐步建立由国家完全控制的经济管理方式，这种做法在很短的时间里集中了全国的力量。中国用极短的时间建立了很多现代工业工厂，中国开始制造飞机，中国开始制造汽车，中国开始制造大型机器，中国由此建立了国家工业的基础\upcite{ref4}。
 
 \subsection{苏联模式弊端在中国的显现}
 但是，苏联的做法本身存在很多问题，中国全面开始建设社会主义，苏联做法不适合中国的情况，这些管理问题开始明显地暴露出来\upcite{ref5}。
@@ -200,7 +271,7 @@
 
 \section{自主探索的起步：对中国特色社会主义建设规律的初步认识}
 \subsection{《论十大关系》：探索本国建设道路的开篇之作}
-一九五六年是新中国历史上的一个关键年份，中国在那一年基本完成了社会主义改造，作为一个位于东方的农业国家，如何全面建设社会主义？这是一个重大的历史问题。那一年的四月，毛泽东发表了《论十大关系》的讲话，这说明中国共产党开始寻找适合中国的建设方法\upcite{ref6}。
+一九五六年是新中国历史上的一个关键年份，中国在那一年基本完成了社会主义改造，作为一个位于东方的农业国家，如何全面建设社会主义？这是一个重大的历史问题。那一年的四月，毛泽东发表了《论十大关系》的讲话\footnote{《论十大关系》最初是毛泽东于1956年4月25日在中共中央政治局扩大会议上的讲话，后于同年5月2日在最高国务会议上再次阐述。该讲话全文于1976年12月26日在《人民日报》首次公开发表，收入《毛泽东选集》第五卷。}，这说明中国共产党开始寻找适合中国的建设方法\upcite{ref6}。
 
 在改变经济结构方面，毛泽东在讲话中首先讨论重工业、轻工业和农业之间的关系，苏联的做法只看重重工业，不关心农业和轻工业，甚至强迫农民交出大部分粮食，严重损害农民的利益。毛泽东针对这些教训提出新的要求，他明确提出，中国必须发展农业和轻工业，用发展农业和轻工业的办法来帮助发展重工业。这说明中国深刻认识到苏联做法的错误，不再完全跟着苏联走，中国共产党自己决定如何安排农业、轻工业和重工业的发展速度。在调整政治关系方面，讲话提出我们要让党内和党外的人都发挥作用，我们要让国内和国外的人都发挥作用，我们要把中国建设成一个强大的国家。这个讲话改变了过去只看重阶级斗争的想法，让更多的人愿意一起建设社会主义\upcite{ref7}。
 
@@ -281,7 +352,7 @@
 在那一年的年底，中共召开了十一届三中全会，会议坚决停止使用“把阶级斗争放在第一位”的口号，决定把党和国家的工作重点放到经济建设上，决定实行改革开放，这是一个重大的历史决定。会议重新确定了指导思想，这个指导思想是“解放思想，根据实际情况做事”，中国确立了这个指导思想。这说明中国共产党在指导思想上重新找回了自己做主的能力，不再依靠任何外国的做法，找到一条全新的道路，为中国寻找新道路提供了坚实的认识基础。
 
 \subsection{突破传统计划经济的藩篱：从体制改革到市场经济}
-中国建立中国特色社会主义道路，在经济上，放弃了苏联式的计划经济，建立了社会主义市场经济。这个改变从农村开始，安徽省小岗村进行了尝试，农民实行了“家庭联产承包责任制”，土地依然属于集体，但是农民可以自己决定如何种地。这个做法改变了过去大家收入一样的情况，农民干活更加积极，农村生产了更多的粮食\upcite{ref12}。在理论方面，中国有了新的认识，当时很多人争论计划和市场哪个属于资本主义。一九九二年，邓小平在南方视察时发表讲话，明确说明，计划只是管理经济的方法，市场也只是管理经济的方法，它们都不代表社会制度。最后，中国确定了新的经济制度，中共十四大正式提出建立“社会主义市场经济体制”，这说明中国完全放弃了苏联的做法，自己找到了管理经济的新方法\upcite{ref13}。
+中国建立中国特色社会主义道路，在经济上，放弃了苏联式的计划经济，建立了社会主义市场经济。这个改变从农村开始，安徽省小岗村进行了尝试，农民实行了”家庭联产承包责任制”\footnote{1978年冬，安徽省凤阳县小岗村18户农民秘密签订”大包干”契约，率先实行分田到户、自负盈亏，成为中国农村改革的标志性事件。这一做法随后在全国推广，正式定名为”家庭联产承包责任制”。}，土地依然属于集体，但是农民可以自己决定如何种地。这个做法改变了过去大家收入一样的情况，农民干活更加积极，农村生产了更多的粮食\upcite{ref12}。在理论方面，中国有了新的认识，当时很多人争论计划和市场哪个属于资本主义。一九九二年，邓小平在南方视察时发表讲话，明确说明，计划只是管理经济的方法，市场也只是管理经济的方法，它们都不代表社会制度。最后，中国确定了新的经济制度，中共十四大正式提出建立“社会主义市场经济体制”，这说明中国完全放弃了苏联的做法，自己找到了管理经济的新方法\upcite{ref13}。
 
 \subsection{“走自己的路”的理论结晶：邓小平理论与马克思主义中国化}
 中国开展了改革开放的工作，邓小平带领中国共产党人总结了过去的经验，创立了邓小平理论。一九八二年，中共召开第十二次全国代表大会，邓小平在开幕式上讲话。明确指出\upcite{ref14}：
@@ -324,7 +395,7 @@
 我们从理论角度分析，马克思主义绝对不是不能改变的规定，它是一个开放的知识系统，随着人们的实际工作不断发展。“自己做主”是毛泽东思想的重要内容，也是邓小平理论的主要思想，也是中国特色社会主义理论的主要思想。国家提出“走自己的路”，这就要求国家遵守科学社会主义的基本原则，同时，增加中国民族的特点，增加当代时代的特点。这种自己做主的做法说明党对理论有深刻的认识，党要求我们在处理复杂问题时，不盲目相信书本知识，党要求我们不盲目听从上级命令，党要求我们只看重实际情况，党把解决中国实际问题作为发展理论的原因和目的。中国共产党一直坚持自己发展理论，所以能够冷静处理各种危险和困难，坚持自己的发展目标。
 
 \subsection{时代启示：以“中国式现代化”全面推进中华民族伟大复兴}
-时间推进到新时代，中国处在新的历史阶段，自己寻找道路的做法取得了巨大的成绩，发展出了丰富的理论，做出了很多实际工作，这个成绩就是中国式现代化。
+时间推进到新时代，中国处在新的历史阶段，自己寻找道路的做法取得了巨大的成绩，发展出了丰富的理论，做出了很多实际工作，这个成绩就是中国式现代化\footnote{"中国式现代化"作为一个完整的理论概念，由习近平总书记在中国共产党第二十次全国代表大会报告（2022年10月）中系统阐述，明确了中国式现代化的中国特色、本质要求和重大原则。}。
 
 中国式现代化有五个明显的特点，它们彻底改变了人们"现代化就是西方化"的错误认识\upcite{ref16}。
 
@@ -352,6 +423,15 @@
 
 中国过去学习苏联，中国后来自己寻找道路，中国今天建设中国式现代化，中国创造了新的人类文明。中国共产党的历史向全世界说明一个道理，世界上每一个国家都有权利自己寻找道路，世界上每一个民族都有能力自己寻找道路。国家和民族必须根据自己的情况做事，国家和民族必须自己寻找适合自己的现代化做法，国家必须相信自己的道路，国家必须依靠自己的力量发展自己，这就是中国建设社会主义的历史留给我们的最重要经验。
 
+% --- 致谢部分 ---
+\vspace{1.5em}
+\section*{致\quad 谢}
+\addcontentsline{toc}{section}{致\quad 谢}
+{\kaishu
+本文的完成得益于社会主义发展史课程授课教师的悉心指导与启发，老师在课堂上对社会主义发展历程的系统讲授，为本文的选题和写作提供了重要的学术方向。同时，感谢与同学们在课堂讨论和课后交流中碰撞出的思想火花，使本文的论证更加充实。在论文撰写过程中，笔者参阅了大量前辈学者的研究成果，在此一并致以诚挚的谢意。
+}
+
+\vspace{1em}
 % --- 参考文献部分 ---
 
 \begingroup
